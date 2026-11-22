@@ -111,5 +111,7 @@ function valid_contact(array $input): array
     if ($values['ciudad'] === '' || mb_strlen($values['ciudad']) > 100) {
         $errors[] = 'La ciudad es obligatoria y debe tener máximo 100 caracteres.';
     }
+    // El campo favorito es opcional y solo admite 0 o 1.
+    $values['favorito'] = isset($input['favorito']) && is_string($input['favorito']) && $input['favorito'] === '1' ? 1 : 0;
     return [$values, $errors];
 }
