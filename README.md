@@ -7,6 +7,25 @@ La Agenda Personal de Contactos es una aplicación web desarrollada con PHP y My
 
 Cada usuario puede agregar, consultar, editar y eliminar sus propios contactos. El sistema incorpora autenticación y sesiones para proteger la información.
 
+## 9. Capturas de pantalla
+
+A continuación se presentan las evidencias del funcionamiento de la Agenda Personal de Contactos V2.
+
+### Inicio de sesión
+![Inicio de sesión](agenda_contactos/docs/01-inicio-sesion.png)
+
+### Panel principal de contactos
+![Panel de contactos](agenda_contactos/docs/02-panel-contactos.png)
+
+### Búsqueda de contactos
+![Búsqueda de contactos](agenda_contactos/docs/03-busqueda.png)
+
+### Ordenamiento de contactos
+![Ordenamiento](agenda_contactos/docs/04-ordenamiento.png)
+
+### Contactos favoritos
+![Contactos favoritos](agenda_contactos/docs/05-favoritos.png)
+
 En esta segunda versión se implementaron nuevas funcionalidades y se publicó la aplicación en un hosting gratuito.
 
 ## 2. URL pública del sistema
