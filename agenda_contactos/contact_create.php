@@ -1,14 +1,14 @@
 <?php
 require_once __DIR__ . '/includes/bootstrap.php';
 require_login();
-$values = ['nombre'=>'', 'telefono'=>'', 'correo'=>'', 'ciudad'=>''];
+$values = ['nombre'=>'', 'telefono'=>'', 'correo'=>'', 'ciudad'=>'', 'favorito'=>0];
 $errors = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
     [$values, $errors] = valid_contact($_POST);
     if (!$errors) {
-        $stmt = db()->prepare('INSERT INTO contactos (id_usuario, nombre, telefono, correo, ciudad) VALUES (?, ?, ?, ?, ?)');
-        $stmt->execute([$_SESSION['user_id'], $values['nombre'], $values['telefono'], $values['correo'], $values['ciudad']]);
+        $stmt = db()->prepare('INSERT INTO contactos (id_usuario, nombre, telefono, correo, ciudad, favorito) VALUES (?, ?, ?, ?, ?, ?)');
+        $stmt->execute([$_SESSION['user_id'], $values['nombre'], $values['telefono'], $values['correo'], $values['ciudad'], $values['favorito']]);
         flash('success', 'Contacto guardado correctamente.');
         redirect('dashboard.php');
     }

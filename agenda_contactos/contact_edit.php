@@ -4,7 +4,7 @@ require_login();
 $id = valid_id($_GET['id'] ?? null);
 if ($id === null) { http_response_code(404); exit('Contacto no encontrado.'); }
 // La condición id_usuario evita incluso el acceso por URL a contactos ajenos.
-$stmt = db()->prepare('SELECT id, nombre, telefono, correo, ciudad FROM contactos WHERE id = ? AND id_usuario = ? LIMIT 1');
+$stmt = db()->prepare('SELECT id, nombre, telefono, correo, ciudad, favorito FROM contactos WHERE id = ? AND id_usuario = ? LIMIT 1');
 $stmt->execute([$id, $_SESSION['user_id']]);
 $contacto = $stmt->fetch();
 if (!$contacto) { http_response_code(404); exit('Contacto no encontrado.'); }
@@ -14,8 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf();
     [$values, $errors] = valid_contact($_POST);
     if (!$errors) {
-        $update = db()->prepare('UPDATE contactos SET nombre = ?, telefono = ?, correo = ?, ciudad = ? WHERE id = ? AND id_usuario = ?');
-        $update->execute([$values['nombre'], $values['telefono'], $values['correo'], $values['ciudad'], $id, $_SESSION['user_id']]);
+        $update = db()->prepare('UPDATE contactos SET nombre = ?, telefono = ?, correo = ?, ciudad = ?, favorito = ? WHERE id = ? AND id_usuario = ?');
+        $update->execute([$values['nombre'], $values['telefono'], $values['correo'], $values['ciudad'], $values['favorito'], $id, $_SESSION['user_id']]);
         flash('success', 'Contacto actualizado correctamente.');
         redirect('dashboard.php');
     }
